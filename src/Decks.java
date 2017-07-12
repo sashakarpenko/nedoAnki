@@ -25,8 +25,11 @@ public class Decks {
         FileWriter fileWriter = new FileWriter(file);
         FileReader fileReader = new FileReader(file);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write("import java.util.HashMap;\n");
+        bufferedWriter.write("import java.util.Map;\n");
         bufferedWriter.write("public class " + newDeck + "{\n");
         bufferedWriter.write("  public void " + newDeck + "(){\n");
+        bufferedWriter.write("  Map<String, String> map = new HashMap<String, String>();\n");
         bufferedWriter.write("      \n");
         bufferedWriter.write("  }\n");
         bufferedWriter.write("}\n");
@@ -44,14 +47,23 @@ public class Decks {
         System.out.println("Введите имя колоды:   ");
         String filename = sc.next();
         System.out.println("Введите слово на английском");
+        Scanner addeng = new Scanner(System.in);
+        String addengword = addeng.next();
         System.out.println("Введите слово на русском");
+        Scanner addrus = new Scanner(System.in);
+        String addrusword = addrus.next();
+
+
         File file1 = new File("src//" + filename + ".java");
         RandomAccessFile file = new RandomAccessFile(filename +".java", "rw");
         file = new RandomAccessFile("src//" + filename +".java","rw");
+
         long a = file1.length();
         long filepointer = a - 6;
         file.seek(filepointer);
-        file.writeChars("");
+        String adddick = "      map.put("+ addengword +"," + addrusword + ");\n    }\n}";
+        file.writeChars(adddick);
         file.close();
+        m.menuDict();
     }
 }
